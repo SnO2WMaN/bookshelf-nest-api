@@ -8,5 +8,11 @@
   ],
   "rules": {
     "@typescript-eslint/no-extraneous-class": [1]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.config.js"],
+      "extends": ["plugin:@shopify/node"]
+    }
+  ]
 }
