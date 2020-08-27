@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "extends": [
+    "plugin:@shopify/typescript",
+    "plugin:@shopify/graphql",
+    "plugin:@shopify/prettier"
+    // "plugin:@shopify/jest"
+  ],
+  "rules": {
+    "@typescript-eslint/no-extraneous-class": [1]
+  }
+}
