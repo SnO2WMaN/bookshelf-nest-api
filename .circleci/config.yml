@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@3.0.1
+  docker: circleci/docker@1.4.0
   codecov: codecov/codecov@1.1.1
 
 jobs:
@@ -75,5 +76,7 @@ workflows:
     jobs:
       - lint-eslint
       - lint-prettier
-      - build
       - test
+      - docker/hadolint:
+          dockerfiles: Dockerfile
+      - build
