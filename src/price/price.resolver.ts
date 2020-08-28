@@ -9,7 +9,8 @@ import {PriceService} from './price.service';
 export class PriceResolver {
   constructor(private readonly exchangeService: ExchangeApiService) {}
 
-  @ResolveField((type) => Price) async exchanged(
+  @ResolveField((type) => Price)
+  async exchanged(
     @Parent() parent: Price,
     @Args('currency', {type: () => String}) currency: string,
   ): Promise<Price> {

@@ -5,6 +5,9 @@ import {BooksModule} from './books/books.module';
 import {ExchangeApiModule} from './exchange-api/exchange-api.module';
 import {PriceService} from './price/price.service';
 import {PriceModule} from './price/price.module';
+import {BookPriceModule} from './book-price/book-price.module';
+import {OpenBDModule} from './openbd/openbd.module';
+import {VersionModule} from './version/version.module';
 
 @Module({
   imports: [
@@ -14,6 +17,9 @@ import {PriceModule} from './price/price.module';
     BooksModule,
     ExchangeApiModule,
     PriceModule,
+    BookPriceModule,
+    OpenBDModule,
+    VersionModule,
   ],
 })
 export class AppModule {}
