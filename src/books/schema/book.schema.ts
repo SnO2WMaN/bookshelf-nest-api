@@ -1,7 +1,8 @@
 import {Field, ID, Int, ObjectType} from '@nestjs/graphql';
-import {IsInt, IsISBN} from 'class-validator';
+import {IsInt} from 'class-validator';
 
 import {BookPrice} from '../../book-price/schema/book-price.schema';
+import {Version} from '../../version/schema/version.schema';
 
 @ObjectType()
 export class Author {
@@ -43,20 +44,6 @@ export class Printer {
 }
 
 @ObjectType()
-export class Version {
-  @Field(() => Int, {defaultValue: 1})
-  @IsInt()
-  version!: number;
-
-  @Field()
-  @IsISBN()
-  isbn?: string;
-
-  @Field(() => Date, {nullable: true})
-  publishedAt?: string;
-}
-
-@ObjectType()
 export class Book {
   @Field((type) => ID)
   id!: string;
@@ -70,7 +57,6 @@ export class Book {
   @Field({nullable: true})
   volume?: number;
 
-  @Field((type) => [Version], {nullable: true})
   versions?: Version[];
 
   @Field((type) => Int, {nullable: true})
