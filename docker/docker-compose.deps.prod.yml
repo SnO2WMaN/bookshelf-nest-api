@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  bookshelf-mongo:
+    container_name: bookshelf-mongo-prod
+  bookshelf-api:
+    container_name: bookshelf-api-prod
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000

@@ -14,3 +14,17 @@ dc-down-local:
     -f docker/docker-compose.deps.base.yml \
     -f docker/docker-compose.deps.local.yml \
     -p local down
+
+.PHONY: dc-up-prod
+dc-up-prod:
+	$(ENV_LOCAL) docker-compose \
+    -f docker/docker-compose.deps.base.yml \
+    -f docker/docker-compose.deps.prod.yml \
+    -p prod up -d --build
+
+.PHONY: dc-down-prod
+dc-down-prod:
+	$(ENV_LOCAL) docker-compose \
+    -f docker/docker-compose.deps.base.yml \
+    -f docker/docker-compose.deps.prod.yml \
+    -p prod down
