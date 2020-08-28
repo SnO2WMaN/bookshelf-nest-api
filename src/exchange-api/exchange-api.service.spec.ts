@@ -34,31 +34,34 @@ describe('ExchangeApiService', () => {
   });
 
   describe('Check supported currency to exchange', () => {
-    test('USDはサポートしている', () => {
+    it('USDはサポートしている', () => {
       expect(exchangeService.isSupportedCurrency('USD')).toBe(true);
     });
-    test('JPYはサポートしている', () => {
+    it('JPYはサポートしている', () => {
       expect(exchangeService.isSupportedCurrency('JPY')).toBe(true);
     });
-    test('ZWLはサポートしていない', () => {
+    it('ZWLはサポートしていない', () => {
       expect(exchangeService.isSupportedCurrency('ZWL')).toBe(false);
     });
   });
 
   describe('Exchange', () => {
-    test('同じ通貨同士ならそのままの値を返す', async () => {
-      const exchanged = exchangeService.exchange(100, 'JPY', 'JPY');
-      await expect(exchanged).resolves.toEqual({value: 100, currency: 'JPY'});
+    it('同じ通貨同士ならそのままの値を返す', async () => {
+      const exchanged = await exchangeService.exchange(100, 'JPY', 'JPY');
+      expect(exchanged).toStrictEqual({
+        value: 100,
+        currency: 'JPY',
+      });
     });
-    test('変換前の通貨が対応していない場合は例外を返す', async () => {
+    it('変換前の通貨が対応していない場合は例外を返す', async () => {
       const exchanged = exchangeService.exchange(100, 'ZWL', 'JPY');
-      await expect(exchanged).rejects.toThrowError(UnsupportedCurrencyError);
+      await expect(exchanged).rejects.toThrow(UnsupportedCurrencyError);
     });
-    test('変換後の通貨が対応していない場合は例外を返す', async () => {
+    it('変換後の通貨が対応していない場合は例外を返す', async () => {
       const exchanged = exchangeService.exchange(100, 'JPY', 'ZWL');
-      await expect(exchanged).rejects.toThrowError(UnsupportedCurrencyError);
+      await expect(exchanged).rejects.toThrow(UnsupportedCurrencyError);
     });
-    test('JPYからUSDへ', async () => {
+    it('JPYからUSDへ', async () => {
       jest.spyOn(httpService, 'get').mockImplementationOnce(() =>
         of({
           data: {
@@ -67,11 +70,14 @@ describe('ExchangeApiService', () => {
           },
         } as any),
       );
-      const exchanged = exchangeService.exchange(100, 'JPY', 'USD');
-      await expect(exchanged).resolves.toEqual({value: 1, currency: 'USD'});
+      const exchanged = await exchangeService.exchange(100, 'JPY', 'USD');
+      await expect(exchanged).toStrictEqual({
+        value: 1,
+        currency: 'USD',
+      });
     });
 
-    test('USDからJPYへ', async () => {
+    it('USDからJPYへ', async () => {
       jest.spyOn(httpService, 'get').mockImplementationOnce(() =>
         of({
           data: {
@@ -80,8 +86,11 @@ describe('ExchangeApiService', () => {
           },
         } as any),
       );
-      const exchanged = exchangeService.exchange(1, 'USD', 'JPY');
-      await expect(exchanged).resolves.toEqual({value: 100, currency: 'JPY'});
+      const exchanged = await exchangeService.exchange(1, 'USD', 'JPY');
+      expect(exchanged).toStrictEqual({
+        value: 100,
+        currency: 'JPY',
+      });
     });
   });
 });
