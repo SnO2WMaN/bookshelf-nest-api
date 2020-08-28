@@ -4,6 +4,7 @@
     "mikestead.dotenv",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "Prisma.vscode-graphql"
+    "Prisma.vscode-graphql",
+    "exiasr.hadolint"
   ]
 }
