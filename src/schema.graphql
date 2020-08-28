@@ -1,0 +1,66 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Price {
+  value: Float!
+  currency: String!
+  approximately: Boolean
+  exchanged(currency: String!): Price!
+}
+
+type Author {
+  name: String!
+  roles: [String!]
+}
+
+type Issuer {
+  name: String!
+}
+
+type Company {
+  name: String!
+}
+
+type Publisher {
+  issuers: [Issuer!]
+  company: [Company!]
+}
+
+type Printer {
+  company: Company!
+  roles: [String!]
+}
+
+type Version {
+  version: Int!
+  isbn: String!
+  publishedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type BookPrice {
+  base: Price!
+}
+
+type Book {
+  id: ID!
+  title: String!
+  authors: [Author!]
+  volume: Float
+  versions: [Version!]
+  pages: Int
+  categories: [String!]
+  keywords: [String!]
+  publishers: Publisher
+  printers: [Printer!]
+  price: BookPrice
+}
+
+type Query {
+  books: [Book!]!
+}
