@@ -25,7 +25,7 @@ describe('ExchangeApiService', () => {
     exchangeService = module.get<ExchangeApiService>(ExchangeApiService);
   });
 
-  afterAll(() => {
+  afterEach(() => {
     jest.resetAllMocks();
   });
 
