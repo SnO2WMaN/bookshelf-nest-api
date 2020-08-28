@@ -74,6 +74,7 @@ describe('ExchangeApiService', () => {
       await expect(exchanged).toStrictEqual({
         value: 1,
         currency: 'USD',
+        approximately: true,
       });
     });
 
@@ -90,6 +91,7 @@ describe('ExchangeApiService', () => {
       expect(exchanged).toStrictEqual({
         value: 100,
         currency: 'JPY',
+        approximately: true,
       });
     });
   });

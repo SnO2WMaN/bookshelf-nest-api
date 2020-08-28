@@ -1,5 +1,7 @@
 import {HttpService, Injectable} from '@nestjs/common';
 
+import {Price} from '../price/schema/price.schema';
+
 export class UnsupportedCurrencyError extends Error {
   constructor(currency: string | string[]) {
     if (Array.isArray(currency))
@@ -16,7 +18,7 @@ export class ExchangeApiService {
     value: number,
     baseCurrency: string,
     targetCurrency: string,
-  ): Promise<{value: number; currency: string}> {
+  ): Promise<Price> {
     if (baseCurrency === targetCurrency)
       return {value, currency: targetCurrency};
 
@@ -35,6 +37,7 @@ export class ExchangeApiService {
     return {
       value: value * data.rates[targetCurrency],
       currency: targetCurrency,
+      approximately: true,
     };
   }
 
