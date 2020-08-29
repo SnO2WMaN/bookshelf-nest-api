@@ -59,6 +59,8 @@ export class Book {
 
   versions?: Version[];
 
+  cover?: string;
+
   @Field((type) => Int, {nullable: true})
   @IsInt()
   pages?: number;

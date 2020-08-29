@@ -1,4 +1,5 @@
 import {Resolver, Query, ResolveField, Parent} from '@nestjs/graphql';
+import {IsUrl} from 'class-validator';
 
 import {Version} from '../version/schema/version.schema';
 import {VersionService} from '../version/version.service';
@@ -27,7 +28,10 @@ export class BooksResolver {
   }
 
   @ResolveField((type) => String, {nullable: true})
+  @IsUrl()
   async cover(@Parent() parent: Book): Promise<string | null> {
+    if (parent?.cover) return parent.cover;
+
     const hasISBNversons = this.versions(parent).filter(({isbn}) =>
       Boolean(isbn),
     );

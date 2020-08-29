@@ -67,5 +67,21 @@ describe('BooksResolver', () => {
       });
       expect(cover).toBeNull();
     });
+    it('元々ある場合は元々のURLを返す', async () => {
+      const cover = await resolver.cover({
+        id: '1',
+        title: 'ハンバーガーちゃんだいすきクラブ',
+        cover:
+          'https://melonbooks.akamaized.net/user_data/packages/resize_image.php?image=212001256126.jpg',
+        versions: [
+          {
+            version: 1,
+          },
+        ],
+      });
+      expect(cover).toBe(
+        'https://melonbooks.akamaized.net/user_data/packages/resize_image.php?image=212001256126.jpg',
+      );
+    });
   });
 });
