@@ -1,7 +1,7 @@
-# commit-msg:
-#   commands:
-#     lint-commit-msg:
-#       run: commitlint --edit
+commit-msg:
+  commands:
+    commitlint:
+      run: commitlint --edit ./.git/COMMIT_EDITMSG
 
 pre-push:
   parallel: true
