@@ -7,11 +7,9 @@ export class Version {
   @IsInt()
   version!: number;
 
-  @Field({nullable: true})
   @IsISBN()
   isbn?: string;
 
-  @Field((type) => Date, {nullable: true})
   publishedAt?: string;
 
   @Field({nullable: true})
