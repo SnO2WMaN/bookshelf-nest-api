@@ -27,10 +27,13 @@ export class BooksResolver {
   }
 
   @ResolveField((type) => String, {nullable: true})
-  async cover(@Parent() parent: Book): Promise<string> {
-    const {isbn} = this.versions(parent).find(({isbn}) => Boolean(isbn));
-    if (isbn) return this.bookbdService.cover(isbn);
-    return null;
+  async cover(@Parent() parent: Book): Promise<string | null> {
+    const hasISBNversons = this.versions(parent).filter(({isbn}) =>
+      Boolean(isbn),
+    );
+    if (hasISBNversons.length === 0) return null;
+    const {isbn} = hasISBNversons[0];
+    return this.bookbdService.cover(isbn);
   }
 
   @Query((type) => [Book])

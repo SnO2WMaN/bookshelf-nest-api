@@ -3,6 +3,8 @@ import {Test, TestingModule} from '@nestjs/testing';
 
 import {VersionModule} from '../version/version.module';
 import {OpenBDModule} from '../openbd/openbd.module';
+import {OpenBDService} from '../openbd/openbd.service';
+import {OpenBDServiceMock} from '../openbd/openbd.service.mock';
 
 import {BooksResolver} from './books.resolver';
 import {BooksService} from './books.service';
@@ -23,9 +25,10 @@ describe('BooksResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [VersionModule, OpenBDModule],
+      imports: [VersionModule],
       providers: [
         {provide: BooksService, useClass: BooksServiceMock},
+        {provide: OpenBDService, useClass: OpenBDServiceMock},
         BooksResolver,
       ],
     }).compile();
@@ -37,10 +40,32 @@ describe('BooksResolver', () => {
     expect(resolver).toBeDefined();
   });
 
-  describe('manyBooks', () => {
-    it('本の個数', async () => {
-      const books = await resolver.manyBooks();
-      expect(books).toHaveLength(2);
+  describe('manyBooks', () => {});
+  describe('cover', () => {
+    it('ISBNがある', async () => {
+      const cover = await resolver.cover({
+        id: '1',
+        title: '東方酔蝶華 ～ロータスイーター達の酔醒(1)',
+        versions: [
+          {
+            version: 1,
+            isbn: '9784041098967',
+          },
+        ],
+      });
+      expect(cover).toBe('https://cover.openbd.jp/9784041098967.jpg');
+    });
+    it('ISBNがない場合はnullを返す', async () => {
+      const cover = await resolver.cover({
+        id: '1',
+        title: '東方酔蝶華 ～ロータスイーター達の酔醒(1)',
+        versions: [
+          {
+            version: 1,
+          },
+        ],
+      });
+      expect(cover).toBeNull();
     });
   });
 });
