@@ -3,7 +3,7 @@ import {Injectable} from '@nestjs/common';
 import {Price} from '../price/schema/price.schema';
 
 @Injectable()
-export class ExchangeApiService {
+export class ExchangeApiServiceMock {
   exchange(value: number, baseCurrency: string, targetCurrency: string): Price {
     if (baseCurrency === targetCurrency)
       return {value, currency: targetCurrency, approximately: false};

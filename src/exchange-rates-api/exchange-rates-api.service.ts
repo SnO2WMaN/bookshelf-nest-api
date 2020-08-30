@@ -2,6 +2,8 @@ import {HttpService, Injectable} from '@nestjs/common';
 
 import {Price} from '../price/schema/price.schema';
 
+import {ExchangeRatesAPISupportCurrency} from './exchange-rates-api.types';
+
 export class UnsupportedCurrencyError extends Error {
   constructor(currency: string | string[]) {
     if (Array.isArray(currency))
@@ -41,7 +43,9 @@ export class ExchangeApiService {
     };
   }
 
-  isSupportedCurrency(currency: string): boolean {
+  isSupportedCurrency(
+    currency: string,
+  ): currency is keyof typeof ExchangeRatesAPISupportCurrency {
     return [
       'CAD',
       'HKD',

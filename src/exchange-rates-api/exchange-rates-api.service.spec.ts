@@ -5,7 +5,7 @@ import {of} from 'rxjs';
 import {
   ExchangeApiService,
   UnsupportedCurrencyError,
-} from './exchange-api.service';
+} from './exchange-rates-api.service';
 
 describe('ExchangeApiService', () => {
   let module: TestingModule;

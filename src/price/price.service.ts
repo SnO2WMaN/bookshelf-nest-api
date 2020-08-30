@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 
-import {ExchangeApiService} from '../exchange-api/exchange-api.service';
+import {ExchangeApiService} from '../exchange-rates-api/exchange-rates-api.service';
 
 import {Price} from './schema/price.schema';
 

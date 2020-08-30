@@ -1,6 +1,6 @@
 import {Module} from '@nestjs/common';
 
-import {ExchangeApiModule} from '../exchange-api/exchange-api.module';
+import {ExchangeApiModule} from '../exchange-rates-api/exchange-rates-api.module';
 
 import {PriceResolver} from './price.resolver';
 import {PriceService} from './price.service';

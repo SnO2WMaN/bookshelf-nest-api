@@ -2,7 +2,7 @@ import {Module} from '@nestjs/common';
 import {GraphQLModule} from '@nestjs/graphql';
 
 import {BooksModule} from './books/books.module';
-import {ExchangeApiModule} from './exchange-api/exchange-api.module';
+import {ExchangeApiModule} from './exchange-rates-api/exchange-rates-api.module';
 import {PriceService} from './price/price.service';
 import {PriceModule} from './price/price.module';
 import {BookPriceModule} from './book-price/book-price.module';

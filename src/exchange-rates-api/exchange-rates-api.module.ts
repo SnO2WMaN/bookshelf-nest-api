@@ -1,6 +1,6 @@
 import {Module, HttpModule} from '@nestjs/common';
 
-import {ExchangeApiService} from './exchange-api.service';
+import {ExchangeApiService} from './exchange-rates-api.service';
 
 @Module({
   imports: [HttpModule],

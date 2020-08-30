@@ -1,17 +1,15 @@
 import {Test, TestingModule} from '@nestjs/testing';
-import {Injectable} from '@nestjs/common';
 
-import {ExchangeApiService} from '../exchange-api/exchange-api.service.mock';
+import {ExchangeApiServiceMock} from '../exchange-rates-api/exchange-rates-api.service.mock';
 
 import {PriceResolver} from './price.resolver';
-import {Price} from './schema/price.schema';
 
 describe('PriceResolver', () => {
   let resolver: PriceResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ExchangeApiService, PriceResolver],
+      providers: [ExchangeApiServiceMock, PriceResolver],
     }).compile();
 
     resolver = module.get<PriceResolver>(PriceResolver);
