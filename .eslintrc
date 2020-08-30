@@ -7,11 +7,16 @@
     "plugin:@shopify/jest"
   ],
   "rules": {
-    "@typescript-eslint/no-extraneous-class": [1],
     "jest/valid-title": [0],
     "jest/lowercase-name": [0]
   },
   "overrides": [
+    {
+      "files": ["*.module.ts"],
+      "rules": {
+        "@typescript-eslint/no-extraneous-class": [0]
+      }
+    },
     {
       "files": ["*.config.js"],
       "extends": ["plugin:@shopify/node"]
