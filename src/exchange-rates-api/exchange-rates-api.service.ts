@@ -2,7 +2,7 @@ import {HttpService, Injectable} from '@nestjs/common';
 
 import {Price} from '../price/schema/price.schema';
 
-import {ExchangeRatesAPISupportCurrency} from './exchange-rates-api.types';
+import {ExchangeRatesAPISupportCurrency} from './schema/exchange-rates-api.schema';
 
 export class UnsupportedCurrencyError extends Error {
   constructor(currency: string | string[]) {

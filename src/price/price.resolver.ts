@@ -1,7 +1,7 @@
 import {Args, Parent, ResolveField, Resolver} from '@nestjs/graphql';
 
 import {ExchangeApiService} from '../exchange-rates-api/exchange-rates-api.service';
-import {ExchangeRatesAPISupportCurrency} from '../exchange-rates-api/exchange-rates-api.types';
+import {ExchangeRatesAPISupportCurrency} from '../exchange-rates-api/schema/exchange-rates-api.schema';
 
 import {Price} from './schema/price.schema';
 
