@@ -50,6 +50,11 @@ export class BooksResolver {
     return this.bookbdService.cover(isbn);
   }
 
+  @Query((type) => Book)
+  async book(@Args('id') id: string) {
+    return this.booksService.findById(id);
+  }
+
   @Query((type) => [Book])
   async manyBooks(@Args() args: ManyBooksArgs) {
     return this.booksService.find(args);

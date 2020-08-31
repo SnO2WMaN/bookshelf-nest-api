@@ -13,6 +13,10 @@ export class BooksService {
     @InjectModel(Book.name) private readonly bookModel: Model<Book>,
   ) {}
 
+  async findById(id: string) {
+    return this.bookModel.findById(id);
+  }
+
   async find({keywords, categories}: ManyBooksArgs) {
     return this.bookModel
       .find({
