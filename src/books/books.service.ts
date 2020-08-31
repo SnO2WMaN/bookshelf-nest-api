@@ -1,15 +1,23 @@
 import {Injectable} from '@nestjs/common';
+import {InjectModel} from '@nestjs/mongoose';
+import {Model} from 'mongoose';
 
-import {Book} from './schema/book.schema';
 import {books} from './sample/books.sample';
-
-const sample: Book[] = books;
+import {Book} from './schema/book.schema';
+import {RegisterBookArgs} from './argstype/register-book.argstype';
 
 @Injectable()
 export class BooksService {
-  books: Book[] = sample;
+  constructor(
+    @InjectModel(Book.name) private readonly bookModel: Model<Book>,
+  ) {}
 
-  async find(): Promise<Book[]> {
-    return this.books;
+  async find() {
+    return this.bookModel.find().exec();
+  }
+
+  async createBook({...other}: RegisterBookArgs) {
+    const book = await this.bookModel.create({...other});
+    return book.save();
   }
 }

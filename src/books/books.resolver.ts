@@ -1,4 +1,11 @@
-import {Resolver, Query, ResolveField, Parent} from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  ResolveField,
+  Parent,
+  Mutation,
+  Args,
+} from '@nestjs/graphql';
 import {IsUrl} from 'class-validator';
 import {URLResolver as URL} from 'graphql-scalars';
 
@@ -8,6 +15,7 @@ import {OpenBDService} from '../openbd/openbd.service';
 
 import {Book} from './schema/book.schema';
 import {BooksService} from './books.service';
+import {RegisterBookArgs} from './argstype/register-book.argstype';
 
 @Resolver((of) => Book)
 export class BooksResolver {
@@ -41,7 +49,13 @@ export class BooksResolver {
   }
 
   @Query((type) => [Book])
-  async manyBooks(): Promise<Book[]> {
+  async manyBooks() {
     return this.booksService.find();
+  }
+
+  @Mutation((type) => Book)
+  async registerBook(@Args() {...other}: RegisterBookArgs) {
+    const book = await this.booksService.createBook({...other});
+    return book;
   }
 }
