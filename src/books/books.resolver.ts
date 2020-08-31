@@ -32,10 +32,9 @@ export class BooksResolver {
   @IsUrl()
   async cover(@Parent() parent: Book): Promise<string | null> {
     if (parent?.cover) return parent.cover;
-
-    const hasISBNversons = this.versions(parent).filter(({isbn}) =>
-      Boolean(isbn),
-    );
+    const versions = this.versions(parent);
+    if (!versions) return null;
+    const hasISBNversons = versions.filter(({isbn}) => Boolean(isbn));
     if (hasISBNversons.length === 0) return null;
     const {isbn} = hasISBNversons[0];
     return this.bookbdService.cover(isbn);
