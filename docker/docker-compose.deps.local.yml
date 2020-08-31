@@ -4,3 +4,11 @@ services:
   bookshelf-mongo:
     container_name: bookshelf-mongo-local
     restart: always
+    ports:
+      - ${MONGO_PORT}:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      MONGO_INITDB_DATABASE: bookshelf
+    volumes:
+      - ./mongo/initdb:/docker-entrypoint-initdb.d

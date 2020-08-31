@@ -3,17 +3,5 @@ version: '3.7'
 services:
   bookshelf-mongo:
     image: mongo:latest
-    ports:
-      - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
-    volumes:
-      - bookshelf-mongodb:/data/db
-
-volumes:
-  bookshelf-mongodb: {}
-
-networks:
-  bookshelf-network:
-    driver: bridge
+      TZ: Asia/Tokyo

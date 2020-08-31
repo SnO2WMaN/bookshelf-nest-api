@@ -29,8 +29,8 @@ import mongooseConfig from './config/mongoose.config';
         options: {
           authSource: 'admin',
         },
-        username: process.env.MONGO_ROOT_USERNAME,
-        password: process.env.MONGO_ROOT_PASSWORD,
+        username: process.env.MONGO_USERNAME,
+        password: process.env.MONGO_PASSWORD,
       }),
       {
         useNewUrlParser: true,

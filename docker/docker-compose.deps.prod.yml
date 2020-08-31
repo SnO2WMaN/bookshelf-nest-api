@@ -3,6 +3,16 @@ version: '3.7'
 services:
   bookshelf-mongo:
     container_name: bookshelf-mongo-prod
+    ports:
+      - ${MONGO_PORT}:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    volumes:
+      - bookshelf-mongodb:/data/db
+    networks:
+      - bookshelf-network
   bookshelf-api:
     container_name: bookshelf-api-prod
     build:
@@ -10,3 +20,18 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4000:4000
+    environment:
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_DATABASE: ${MONGO_DATABASE}
+      MONGO_HOST: 'bookshelf-mongo'
+      MONGO_PORT: ${MONGO_PORT}
+    networks:
+      - bookshelf-network
+
+volumes:
+  bookshelf-mongodb: {}
+
+networks:
+  bookshelf-network:
+    driver: bridge
