@@ -1,7 +1,7 @@
 import {Book} from '../schema/book.schema';
 
-export const multipleVersions: Book = {
-  id: '10',
+export const multipleVersions = {
+  id: '100',
   title: '心理学',
   versions: [
     {
@@ -59,10 +59,10 @@ export const multipleVersions: Book = {
   ],
 };
 
-export const books: Book[] = [
+export const books = [
   {
     id: '1',
-    title: '東方酔蝶華 ～ロータスイーター達の酔醒(1)',
+    title: '東方酔蝶華 ～ ロータスイーター達の酔醒(1)',
     volume: 1,
     pages: 192,
     versions: [
@@ -127,39 +127,6 @@ export const books: Book[] = [
     ],
   },
   {
-    id: '3',
-    title: '東方智霊奇伝 反則探偵さとり(1)',
-    volume: 1,
-    pages: 164,
-    versions: [
-      {
-        version: 1,
-        isbn: '9784049133486',
-        publishedAt: '2020-08-26',
-      },
-    ],
-    authors: [
-      {name: 'ZUN', roles: ['原作']},
-      {name: '銀木犀', roles: ['漫画']},
-    ],
-    price: {
-      base: {value: 820, currency: 'JPY'},
-      tax: 'JPN',
-    },
-    categories: ['コミック'],
-    keywords: ['東方Project', '東方智霊奇伝'],
-    publishers: {
-      issuers: [{name: '青柳昌行'}],
-      company: [{name: '株式会社KADOKAWA'}],
-    },
-    printers: [
-      {
-        company: {name: '共同印刷株式会社'},
-        roles: ['印刷', '製本'],
-      },
-    ],
-  },
-  {
     id: '4',
     title: 'ハンバーガーちゃんだいすきクラブ',
     cover:
@@ -177,6 +144,130 @@ export const books: Book[] = [
         publishedAt: '2020-05-01',
       },
     ],
+  },
+  {
+    id: '5',
+    title: 'The Art of Hyper Light Drifter',
+    categories: ['アートブック'],
+    keywords: ['ドット絵', 'ピクセルアート', 'Hyper Light Drifter'],
+    versions: [{version: 1}],
+    price: {
+      base: {
+        value: 42,
+        currency: 'USD',
+      },
+    },
+  },
+  {
+    id: '6',
+    title: 'ピクセル百景',
+    categories: ['アートブック'],
+    keywords: ['ドット絵', 'ピクセルアート'],
+
+    price: {
+      base: {
+        value: 2700,
+        currency: 'JPY',
+      },
+      tax: 'JPN',
+    },
+  },
+  {
+    id: '7',
+    title: 'visual experiments lain/ビジュアルエクスペリメンツ レイン',
+    categories: ['アートブック', 'ムック本'],
+    keywords: ['serial experiments lain'],
+    versions: [
+      {
+        publishedAt: '2013/06/30',
+        isbn: '978-4835449500',
+        version: 1,
+      },
+    ],
+    price: {
+      base: {
+        value: 2400,
+        currency: 'JPY',
+      },
+      tax: 'JPN',
+    },
+  },
+  {
+    id: '8',
+    title: 'Docker/Kubernetes 実践コンテナ入門',
+    authors: [
+      {
+        name: '山田明憲',
+      },
+    ],
+    price: {
+      base: {
+        value: 3380,
+        currency: 'JPY',
+      },
+      tax: 'JPN',
+    },
+    categories: ['技術書'],
+    keywords: ['Docker', 'Kubernetes'],
+    versions: [
+      {
+        version: 1,
+        isbn: '9784297100339',
+      },
+    ],
+  },
+  {
+    id: '9',
+    title: '僕たちのインターネット史',
+    authors: [
+      {
+        name: 'ばるぼら',
+      },
+      {
+        name: 'さわやか',
+      },
+    ],
+    price: {
+      base: {
+        value: 1600,
+        currency: 'JPY',
+      },
+      tax: 'JPN',
+    },
+    versions: [
+      {
+        version: 1,
+        isbn: '9784750515113',
+      },
+    ],
+    categories: ['評論'],
+    keywords: ['インターネット'],
+  },
+  {
+    id: '10',
+    title:
+      'GRAVITY DAZE シリーズ公式アートブック/ドゥヤ レヤヴィ サーエジュ（喜んだり、悩んだり）',
+    authors: [
+      {
+        name: '電撃攻略本編集部',
+        roles: ['編集'],
+      },
+    ],
+    price: {
+      base: {
+        value: 3700,
+        currency: 'JPY',
+      },
+      tax: 'JPN',
+    },
+    versions: [
+      {
+        version: 1,
+        isbn: '9784048925235',
+      },
+    ],
+    categories: ['アートブック'],
+    keywords: ['GRAVITY DAZE'],
   },
   multipleVersions,
 ];

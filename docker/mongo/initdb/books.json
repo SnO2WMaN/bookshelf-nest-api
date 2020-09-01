@@ -18,7 +18,7 @@
     "versions": [
       {
         "version": 1,
-        "isbn": "9784041098967",
+        "isbn": "9784049133486",
         "publishedAt": "2020-08-26"
       }
     ],
@@ -52,7 +52,14 @@
         "isbn": "9784041098967",
         "publishedAt": "2020-08-26"
       }
-    ]
+    ],
+    "price": {
+      "base": {
+        "value": 840,
+        "currency": "JPY"
+      },
+      "tax": "JPN"
+    }
   },
   {
     "title": "The Art of Hyper Light Drifter",
@@ -185,5 +192,305 @@
         "roles": ["製本"]
       }
     ]
+  },
+  {
+    "title": "シメジ シミュレーション 01",
+    "authors": [{"name": "つくみず"}],
+    "pages": 132,
+    "versions": [
+      {"version": 1, "publishedAt": "2020-02-28", "isbn": "9784040642918"}
+    ],
+    "categories": ["コミック"],
+    "keywords": ["シメジ シミュレーション"],
+    "price": {"base": {"value": 820, "currency": "JPY"}, "tax": "JPN"},
+    "publishers": {"company": [{"name": "KADOKAWA"}]}
+  },
+  {
+    "title": "［普及版］ジェネラティブ・アート",
+    "versions": [
+      {"version": 1, "publishedAt": "2014-11-23", "isbn": "978-4-86100-963-1"}
+    ],
+    "price": {"base": {"value": 820, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [
+      {"name": "マット・ピアソン"},
+      {"name": "沖 啓介", "roles": ["翻訳"]},
+      {"name": "久保田 晃弘", "roles": ["監訳"]}
+    ],
+    "categories": ["技術書"],
+    "keywords": ["Processing"]
+  },
+  {
+    "title": "ホワット・イフ？：野球のボールを光速で投げたらどうなるか",
+    "versions": [
+      {"version": 1, "publishedAt": "2015-06-25", "isbn": "9784152095459"}
+    ],
+    "price": {"base": {"value": 1500, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [
+      {"name": "ランドール・マンロー"},
+      {"name": "吉田 三知世", "roles": ["翻訳"]}
+    ]
+  },
+  {
+    "title": "ダークウェブ・アンダーグラウンド",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2019-01-15",
+        "isbn": "9784781617411",
+        "jan": "1920036018505"
+      }
+    ],
+    "price": {"base": {"value": 1850, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "木澤佐登志"}]
+  },
+  {
+    "title": "視覚文化「超」講義",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2014-06-26",
+        "isbn": "978-4-8459-1430-2"
+      }
+    ],
+    "pages": 336,
+    "price": {"base": {"value": 2100, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "石岡良治"}]
+  },
+  {
+    "title": "理工系微分積分学",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2006-06-30"
+      },
+      {
+        "version": 2,
+        "publishedAt": "2007-12-10"
+      },
+      {
+        "version": 3,
+        "publishedAt": "2011-03-30",
+        "isbn": "9784780602319"
+      }
+    ],
+    "price": {"base": {"value": 2000, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "荒井 正治"}]
+  },
+  {
+    "title": "よふかしのうた(1)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2020-1-18",
+        "isbn": "9784091294920"
+      }
+    ],
+    "price": {"base": {"value": 454, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "コトヤマ"}],
+    "categories": ["コミック"],
+    "keywords": ["よふかしのうた"],
+    "pages": 192
+  },
+  {
+    "title": "よふかしのうた(2)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2020-02-18",
+        "isbn": "9784091295569"
+      }
+    ],
+    "price": {"base": {"value": 454, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "コトヤマ"}],
+    "categories": ["コミック"],
+    "keywords": ["よふかしのうた"],
+    "pages": 192
+  },
+  {
+    "title": "よふかしのうた(3)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2020-04-16",
+        "isbn": "9784098500642"
+      }
+    ],
+    "price": {"base": {"value": 454, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "コトヤマ"}],
+    "categories": ["コミック"],
+    "keywords": ["よふかしのうた"],
+    "pages": 208
+  },
+  {
+    "title": "よふかしのうた(4)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2020-08-18",
+        "isbn": "9784098501632"
+      }
+    ],
+    "price": {"base": {"value": 454, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "コトヤマ"}],
+    "categories": ["コミック"],
+    "keywords": ["よふかしのうた"],
+    "pages": 208
+  },
+  {
+    "title": "九龍ジェネリックロマンス(1)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2020-02-19",
+        "isbn": "978-4-08-891488-6"
+      }
+    ],
+    "price": {"base": {"value": 600, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "眉月じゅん"}],
+    "categories": ["コミック"],
+    "keywords": ["九龍ジェネリックロマンス"],
+    "pages": 204,
+    "publishers": {"company": [{"name": "集英社"}]}
+  },
+  {
+    "title": "九龍ジェネリックロマンス(2)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2020-07-17",
+        "isbn": "978-4-08-891532-6"
+      }
+    ],
+    "price": {"base": {"value": 600, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [{"name": "眉月じゅん"}],
+    "categories": ["コミック"],
+    "keywords": ["九龍ジェネリックロマンス"],
+    "pages": 178,
+    "publishers": {"company": [{"name": "集英社"}]}
+  },
+  {
+    "title": "ニンジャスレイヤー　キョート・ヘル・オン・アース(1)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2019-01-18",
+        "isbn": "978-4-253-23916-5"
+      }
+    ],
+    "price": {"base": {"value": 600, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [
+      {
+        "name": "ブラッドレー・ボンド＋フィリップ・N・モーゼズ",
+        "roles": ["原作"]
+      },
+      {"name": "余湖裕輝", "roles": ["漫画"]},
+      {"name": "田畑由秋", "roles": ["脚本"]}
+    ],
+    "categories": ["コミック"],
+    "keywords": [
+      "ニンジャスレイヤー",
+      "ニンジャスレイヤー　キョート・ヘル・オン・アース"
+    ],
+    "publishers": {"company": [{"name": "秋田書店"}]}
+  },
+  {
+    "title": "ニンジャスレイヤー　キョート・ヘル・オン・アース(2)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2019-01-18",
+        "isbn": "978-4-253-23917-2"
+      }
+    ],
+    "price": {"base": {"value": 600, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [
+      {
+        "name": "ブラッドレー・ボンド＋フィリップ・N・モーゼズ",
+        "roles": ["原作"]
+      },
+      {"name": "余湖裕輝", "roles": ["漫画"]},
+      {"name": "田畑由秋", "roles": ["脚本"]}
+    ],
+    "categories": ["コミック"],
+    "keywords": [
+      "ニンジャスレイヤー",
+      "ニンジャスレイヤー　キョート・ヘル・オン・アース"
+    ],
+    "publishers": {"company": [{"name": "秋田書店"}]}
+  },
+  {
+    "title": "ニンジャスレイヤー　キョート・ヘル・オン・アース(3)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2019-06-20",
+        "isbn": "978-4-253-23918-9"
+      }
+    ],
+    "price": {"base": {"value": 630, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [
+      {
+        "name": "ブラッドレー・ボンド＋フィリップ・N・モーゼズ",
+        "roles": ["原作"]
+      },
+      {"name": "余湖裕輝", "roles": ["漫画"]},
+      {"name": "田畑由秋", "roles": ["脚本"]}
+    ],
+    "categories": ["コミック"],
+    "keywords": [
+      "ニンジャスレイヤー",
+      "ニンジャスレイヤー　キョート・ヘル・オン・アース"
+    ],
+    "publishers": {"company": [{"name": "秋田書店"}]}
+  },
+  {
+    "title": "ニンジャスレイヤー　キョート・ヘル・オン・アース(4)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2019/11/20",
+        "isbn": "978-4-253-23919-6"
+      }
+    ],
+    "price": {"base": {"value": 630, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [
+      {
+        "name": "ブラッドレー・ボンド＋フィリップ・N・モーゼズ",
+        "roles": ["原作"]
+      },
+      {"name": "余湖裕輝", "roles": ["漫画"]},
+      {"name": "田畑由秋", "roles": ["脚本"]}
+    ],
+    "categories": ["コミック"],
+    "keywords": [
+      "ニンジャスレイヤー",
+      "ニンジャスレイヤー　キョート・ヘル・オン・アース"
+    ],
+    "publishers": {"company": [{"name": "秋田書店"}]}
+  },
+  {
+    "title": "ニンジャスレイヤー　キョート・ヘル・オン・アース(5)",
+    "versions": [
+      {
+        "version": 1,
+        "publishedAt": "2020-04-20",
+        "isbn": "978-4-253-23920-2"
+      }
+    ],
+    "price": {"base": {"value": 630, "currency": "JPY"}, "tax": "JPN"},
+    "authors": [
+      {
+        "name": "ブラッドレー・ボンド＋フィリップ・N・モーゼズ",
+        "roles": ["原作"]
+      },
+      {"name": "余湖裕輝", "roles": ["漫画"]},
+      {"name": "田畑由秋", "roles": ["脚本"]}
+    ],
+    "categories": ["コミック"],
+    "keywords": [
+      "ニンジャスレイヤー",
+      "ニンジャスレイヤー　キョート・ヘル・オン・アース"
+    ],
+    "publishers": {"company": [{"name": "秋田書店"}]}
   }
 ]
