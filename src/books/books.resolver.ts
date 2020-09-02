@@ -23,10 +23,10 @@ import {ManyBooksArgs} from './argstype/many-books.argstype';
 export class BooksResolver {
   constructor(
     private readonly booksService: BooksService,
-    private readonly versionService: VersionService,
     private readonly bookbdService: OpenBDService,
   ) {}
 
+  /*
   @ResolveField((type) => [Version], {nullable: true})
   versions(@Parent() {versions}: Book): Version[] {
     return versions && this.versionService.sortVersions(versions);
@@ -49,6 +49,7 @@ export class BooksResolver {
     const {isbn} = hasISBNversons[0];
     return this.bookbdService.cover(isbn);
   }
+  */
 
   @Query((type) => Book)
   async book(@Args('id') id: string) {

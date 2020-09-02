@@ -1,17 +1,13 @@
 /* eslint-disable no-process-env */
 import {Module} from '@nestjs/common';
+import {ConfigModule} from '@nestjs/config';
 import {GraphQLModule} from '@nestjs/graphql';
 import {MongooseModule} from '@nestjs/mongoose';
 import {format as formatMongoURI} from 'mongodb-uri';
-import {ConfigModule} from '@nestjs/config';
 
-import {BookPriceModule} from './book-price/book-price.module';
 import {BooksModule} from './books/books.module';
-import {ExchangeApiModule} from './exchange-rates-api/exchange-rates-api.module';
-import {OpenBDModule} from './openbd/openbd.module';
-import {PriceModule} from './price/price.module';
-import {VersionModule} from './version/version.module';
 import mongooseConfig from './config/mongoose.config';
+import {OpenBDModule} from './openbd/openbd.module';
 
 @Module({
   imports: [
@@ -40,11 +36,11 @@ import mongooseConfig from './config/mongoose.config';
       autoSchemaFile: `${process.cwd()}/src/schema.graphql`,
     }),
     BooksModule,
-    ExchangeApiModule,
-    PriceModule,
-    BookPriceModule,
+    //  ExchangeApiModule,
+    //  PriceModule,
+    //  BookPriceModule,
     OpenBDModule,
-    VersionModule,
+    //  VersionModule,
   ],
 })
 export class AppModule {}
