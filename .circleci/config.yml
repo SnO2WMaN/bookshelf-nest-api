@@ -18,6 +18,14 @@ jobs:
       - store_artifacts:
           path: ./dist
 
+  build-docker:
+    executor: docker/docker
+    steps:
+      - checkout
+      - docker/check
+      - docker/build:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+
   lint-prettier:
     executor:
       name: 'node/default'
@@ -79,4 +87,10 @@ workflows:
       - test
       - docker/hadolint:
           dockerfiles: Dockerfile
-      - build
+      - build:
+          requires:
+            - test
+      - build-docker:
+          requires:
+            - docker/hadolint
+            - build
