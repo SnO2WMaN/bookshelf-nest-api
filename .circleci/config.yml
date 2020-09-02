@@ -24,7 +24,7 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          image: bookshelf/nest-api
 
   lint-prettier:
     executor:
