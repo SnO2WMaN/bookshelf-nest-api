@@ -4,6 +4,7 @@ orbs:
   node: circleci/node@3.0.1
   docker: circleci/docker@1.4.0
   codecov: codecov/codecov@1.1.1
+  fossa-cli: fossa/cli@0.0.3
 
 jobs:
   build:
@@ -94,3 +95,9 @@ workflows:
           requires:
             - docker/hadolint
             - build
+      - fossa-cli/analyze:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
