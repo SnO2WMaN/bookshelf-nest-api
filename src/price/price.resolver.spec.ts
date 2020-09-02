@@ -1,6 +1,7 @@
 import {Test, TestingModule} from '@nestjs/testing';
 
 import {ExchangeApiServiceMock} from '../exchange-rates-api/exchange-rates-api.service.mock';
+import {ExchangeApiService} from '../exchange-rates-api/exchange-rates-api.service';
 
 import {PriceResolver} from './price.resolver';
 
@@ -9,7 +10,10 @@ describe('PriceResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ExchangeApiServiceMock, PriceResolver],
+      providers: [
+        {provide: ExchangeApiService, useClass: ExchangeApiServiceMock},
+        PriceResolver,
+      ],
     }).compile();
 
     resolver = module.get<PriceResolver>(PriceResolver);
