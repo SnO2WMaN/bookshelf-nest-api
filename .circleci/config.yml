@@ -19,7 +19,7 @@ jobs:
           path: ./dist
 
   build-docker:
-    executor: docker/docker
+    executor: docker/machine
     steps:
       - checkout
       - docker/check
