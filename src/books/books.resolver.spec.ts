@@ -1,13 +1,11 @@
-import {Injectable} from '@nestjs/common';
 import {Test, TestingModule} from '@nestjs/testing';
 
 import {OpenBDService} from '../openbd/openbd.service';
 import {OpenBDServiceMock} from '../openbd/openbd.service.mock';
-import {VersionModule} from '../version/version.module';
+import {JanService} from '../jan/jan.service';
 
 import {BooksResolver} from './books.resolver';
 import {BooksService} from './books.service';
-import {Book} from './schema/book.schema';
 import {BooksServiceMock} from './books.service.mock';
 
 describe('BooksResolver', () => {
@@ -15,8 +13,8 @@ describe('BooksResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [VersionModule],
       providers: [
+        JanService,
         {provide: BooksService, useClass: BooksServiceMock},
         {provide: OpenBDService, useClass: OpenBDServiceMock},
         BooksResolver,

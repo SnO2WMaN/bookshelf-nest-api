@@ -3,26 +3,31 @@ import {Parent, ResolveField, Resolver} from '@nestjs/graphql';
 import {PriceService} from '../price/price.service';
 import {Price} from '../price/schema/price.schema';
 
+import {BookPriceService} from './book-price.service';
 import {BookPrice} from './schema/book-price.schema';
 
 export class UnsupportedTaxError extends Error {}
 
 @Resolver((of) => BookPrice)
 export class BookPriceResolver {
-  constructor(private readonly priceService: PriceService) {}
+  constructor(
+    private readonly priceService: PriceService,
+    private readonly bookpriceService: BookPriceService,
+  ) {}
 
-  @ResolveField(() => Price)
-  tax(@Parent() {base, tax}: BookPrice): Price {
-    if (!tax) return {...base, value: 0};
-    switch (tax) {
-      case 'JPN':
-        return {value: base.value * 0.1, currency: 'JPY'};
-    }
-    throw new UnsupportedTaxError();
+  @ResolveField(() => Price, {nullable: true})
+  tax(@Parent() {base, tax}: BookPrice): Price | null {
+    if (tax)
+      switch (tax) {
+        case 'JPN':
+          return this.bookpriceService.japaneseComsumptionTax(base);
+      }
+    return null;
   }
 
   @ResolveField(() => Price)
-  calculated(@Parent() parent: BookPrice): Promise<Price> {
-    return this.priceService.combine(parent.base, this.tax(parent));
+  calculated(@Parent() parent: BookPrice) {
+    const tax = this.tax(parent);
+    return tax ? this.priceService.combine(parent.base, tax) : parent.base;
   }
 }
