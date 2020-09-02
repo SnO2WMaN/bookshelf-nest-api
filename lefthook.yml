@@ -15,19 +15,22 @@ pre-commit:
   commands:
     eslint:
       tags: frontend lint
+      files: git diff --name-only --staged
       glob: '*.{js,jsx,ts,tsx}'
       run: eslint {staged_files}
     prettier:
       tags: frontend lint
+      files: git diff --name-only --staged
       glob: '*.{css,sass,scss,json,yml,yaml,md,gql,graphql}'
       run: prettier --check {staged_files}
     prettier-configs:
       tags: frontend lint
+      files: git diff --name-only --staged
       glob: '*.{babel,eslint,prettier,renovate}rc'
       run: prettier --check {staged_files}
     circleci:
       tags: ci lint
-      files: git ls-files -m
+      files: git diff --name-only --staged
       glob: '.circleci/*.yml'
       run: |
         docker run \
@@ -36,7 +39,7 @@ pre-commit:
           circleci config validate
     hadolint:
       tags: docker lint
-      files: git ls-files -m
+      files: git diff --name-only --staged
       glob: 'Dockerfile*'
       run: |
         for staged_file in {staged_files}; do
