@@ -5,9 +5,13 @@ import {GraphQLModule} from '@nestjs/graphql';
 import {MongooseModule} from '@nestjs/mongoose';
 import {format as formatMongoURI} from 'mongodb-uri';
 
+import {BookPriceModule} from './book-price/book-price.module';
 import {BooksModule} from './books/books.module';
 import mongooseConfig from './config/mongoose.config';
+import {ExchangeApiModule} from './exchange-rates-api/exchange-rates-api.module';
+import {JanModule} from './jan/jan.module';
 import {OpenBDModule} from './openbd/openbd.module';
+import {PriceModule} from './price/price.module';
 
 @Module({
   imports: [
@@ -36,11 +40,11 @@ import {OpenBDModule} from './openbd/openbd.module';
       autoSchemaFile: `${process.cwd()}/src/schema.graphql`,
     }),
     BooksModule,
-    //  ExchangeApiModule,
-    //  PriceModule,
-    //  BookPriceModule,
+    ExchangeApiModule,
+    PriceModule,
+    BookPriceModule,
     OpenBDModule,
-    //  VersionModule,
+    JanModule,
   ],
 })
 export class AppModule {}

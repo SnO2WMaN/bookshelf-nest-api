@@ -1,6 +1,7 @@
 import {Test, TestingModule} from '@nestjs/testing';
 
 import {ExchangeApiServiceMock} from '../exchange-rates-api/exchange-rates-api.service.mock';
+import {ExchangeApiService} from '../exchange-rates-api/exchange-rates-api.service';
 
 import {PriceService} from './price.service';
 
@@ -9,7 +10,10 @@ describe('PriceService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ExchangeApiServiceMock, PriceService],
+      providers: [
+        {provide: ExchangeApiService, useClass: ExchangeApiServiceMock},
+        PriceService,
+      ],
     }).compile();
 
     service = module.get<PriceService>(PriceService);
@@ -32,59 +36,62 @@ describe('PriceService', () => {
         approximately: false,
       });
     });
-    it('両替を考えずに2つの金額を足し合わせる', async () => {
-      const combined = await service.combine(
-        {value: 100, currency: 'JPY'},
-        {value: 200, currency: 'JPY'},
-      );
-      expect(combined).toStrictEqual({
+    it('両替を考えずに金額を足し合わせる', async () => {
+      expect(
+        await service.combine(
+          {value: 100, currency: 'JPY'},
+          {value: 200, currency: 'JPY'},
+        ),
+      ).toStrictEqual({
         value: 300,
         currency: 'JPY',
         approximately: false,
       });
-    });
-    it('両替を考えずに3つの金額を足し合わせる', async () => {
-      const combined = await service.combine(
-        {value: 100, currency: 'JPY'},
-        {value: 200, currency: 'JPY'},
-        {value: 300, currency: 'JPY'},
-      );
-      expect(combined).toStrictEqual({
+
+      expect(
+        await service.combine(
+          {value: 100, currency: 'JPY'},
+          {value: 200, currency: 'JPY'},
+          {value: 300, currency: 'JPY'},
+        ),
+      ).toStrictEqual({
         value: 600,
         currency: 'JPY',
         approximately: false,
       });
     });
-    it('両替を考えて2つの金額を足し合わせる', async () => {
-      const combined = await service.combine(
-        {value: 100, currency: 'JPY'},
-        {value: 2, currency: 'USD'},
-      );
-      expect(combined).toStrictEqual({
+
+    it('両替を考えて金額を足し合わせる', async () => {
+      expect(
+        await service.combine(
+          {value: 100, currency: 'JPY'},
+          {value: 2, currency: 'USD'},
+        ),
+      ).toStrictEqual({
         value: 300,
         currency: 'JPY',
         approximately: true,
       });
-    });
-    it('両替を考えて3つの金額を足し合わせる', async () => {
-      const combined = await service.combine(
-        {value: 100, currency: 'JPY'},
-        {value: 2, currency: 'USD'},
-        {value: 3, currency: 'USD'},
-      );
-      expect(combined).toStrictEqual({
+
+      expect(
+        await service.combine(
+          {value: 100, currency: 'JPY'},
+          {value: 2, currency: 'USD'},
+          {value: 3, currency: 'USD'},
+        ),
+      ).toStrictEqual({
         value: 600,
         currency: 'JPY',
         approximately: true,
       });
-    });
-    it('両替を考えて3つの金額を足し合わせる(2)', async () => {
-      const combined = await service.combine(
-        {value: 100, currency: 'JPY'},
-        {value: 2, currency: 'USD'},
-        {value: 300, currency: 'JPY'},
-      );
-      expect(combined).toStrictEqual({
+
+      expect(
+        await service.combine(
+          {value: 100, currency: 'JPY'},
+          {value: 2, currency: 'USD'},
+          {value: 300, currency: 'JPY'},
+        ),
+      ).toStrictEqual({
         value: 600,
         currency: 'JPY',
         approximately: true,
