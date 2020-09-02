@@ -3,6 +3,8 @@ ENV_LOCAL = $(shell cat $(ENV_LOCAL_FILE))
 
 .PHONY: dc-up-local
 dc-up-local:
+	cd docker/mongo/sample; git pull
+	make -C docker/mongo/sample bundle
 	$(ENV_LOCAL) docker-compose \
     -f docker/docker-compose.deps.base.yml \
     -f docker/docker-compose.deps.local.yml \
