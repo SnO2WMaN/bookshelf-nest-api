@@ -45,3 +45,8 @@ pre-commit:
         for staged_file in {staged_files}; do
           docker run -it --rm hadolint/hadolint < $staged_file
         done
+    renovate:
+      tags: renovate lint
+      files: git diff --name-only --staged
+      glob: 'renovate.json'
+      run: npx --package renovate -c 'renovate-config-validator'
