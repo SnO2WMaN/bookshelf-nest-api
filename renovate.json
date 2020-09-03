@@ -1,7 +1,7 @@
 {
   "extends": [
     "config:base",
-    ":label(Renovate)",
+    ":label(renovate)",
     ":timezone(Asia/Tokyo)",
     "schedule:weekly"
   ],
