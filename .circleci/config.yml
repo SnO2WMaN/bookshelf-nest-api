@@ -55,6 +55,12 @@ jobs:
       - store_test_results:
           path: ./junit
 
+  fossa:
+    machine: true
+    steps:
+      - checkout
+      - fossa-cli/setup
+
   test:
     executor:
       name: 'node/default'
@@ -95,7 +101,7 @@ workflows:
           requires:
             - docker/hadolint
             - build
-      - fossa-cli/analyze:
+      - fossa:
           filters:
             branches:
               only:
