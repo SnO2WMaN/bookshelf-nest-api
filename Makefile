@@ -8,7 +8,7 @@ dc-up-local:
 	$(ENV_LOCAL) docker-compose \
     -f docker/docker-compose.deps.base.yml \
     -f docker/docker-compose.deps.local.yml \
-    -p local up -d
+    -p local up -d -V
 
 .PHONY: dc-down-local
 dc-down-local:
