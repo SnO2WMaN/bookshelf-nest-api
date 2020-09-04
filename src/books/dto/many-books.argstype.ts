@@ -3,9 +3,14 @@ import {IsInt, Min, Max, IsPositive} from 'class-validator';
 
 @ArgsType()
 export class ManyBooksArgs {
-  @Field((type) => Int, {nullable: false, defaultValue: 50})
+  @Field((type) => Int, {defaultValue: 32})
   @IsInt()
   @IsPositive()
-  @Max(100)
+  @Max(80)
   limit: number;
+
+  @Field((type) => Int, {defaultValue: 1})
+  @IsInt()
+  @IsPositive()
+  page: number;
 }

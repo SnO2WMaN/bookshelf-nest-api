@@ -1,5 +1,6 @@
 import {Module} from '@nestjs/common';
 import {MongooseModule} from '@nestjs/mongoose';
+import * as mongoosePaginate from 'mongoose-paginate-v2';
 
 import {OpenBDModule} from '../openbd/openbd.module';
 import {JanModule} from '../jan/jan.module';
@@ -10,7 +11,16 @@ import {Book, BookSchema} from './schema/book.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{name: Book.name, schema: BookSchema}]),
+    MongooseModule.forFeatureAsync([
+      {
+        name: Book.name,
+        useFactory() {
+          const schema = BookSchema;
+          schema.plugin(mongoosePaginate);
+          return schema;
+        },
+      },
+    ]),
     OpenBDModule,
     JanModule,
   ],

@@ -1,3 +1,4 @@
+import {UsePipes, ValidationPipe} from '@nestjs/common';
 import {
   Args,
   Mutation,
@@ -5,20 +6,23 @@ import {
   Query,
   ResolveField,
   Resolver,
-  ArgsType,
+  ObjectType,
 } from '@nestjs/graphql';
 import {IsUrl} from 'class-validator';
-import {URLResolver as URL, DateResolver as DateScalar} from 'graphql-scalars';
-import {ValidationPipe, UsePipes} from '@nestjs/common';
+import {DateResolver as DateScalar, URLResolver as URL} from 'graphql-scalars';
 
-import {OpenBDService} from '../openbd/openbd.service';
 import {BookPrice} from '../book-price/schema/book-price.schema';
 import {JanService} from '../jan/jan.service';
+import {OpenBDService} from '../openbd/openbd.service';
+import {Paginated} from '../common/paginated.schema';
 
-import {RegisterBookArgs} from './dto/register-book.argstype';
 import {BooksService} from './books.service';
-import {Book} from './schema/book.schema';
 import {ManyBooksArgs} from './dto/many-books.argstype';
+import {RegisterBookArgs} from './dto/register-book.argstype';
+import {Book} from './schema/book.schema';
+
+@ObjectType()
+export class BookPagination extends Paginated(Book) {}
 
 @Resolver((of) => Book)
 export class BooksResolver {
@@ -54,10 +58,29 @@ export class BooksResolver {
     return this.booksService.findById(id);
   }
 
-  @Query((type) => [Book])
+  @Query((type) => BookPagination)
   @UsePipes(new ValidationPipe())
-  async manyBooks(@Args() args: ManyBooksArgs) {
-    return this.booksService.find(args);
+  async manyBooks(@Args() args: ManyBooksArgs): Promise<BookPagination> {
+    const {
+      nextPage,
+      prevPage,
+      hasPrevPage,
+      hasNextPage,
+      page,
+      totalPages,
+      ...result
+    } = await this.booksService.find(args);
+    return {
+      ...result,
+      pageInfo: {
+        page,
+        totalPages,
+        hasNextPage,
+        hasPrevPage,
+        prevPage,
+        nextPage,
+      },
+    };
   }
 
   @Mutation((type) => Book)
