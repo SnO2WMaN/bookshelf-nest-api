@@ -2,9 +2,9 @@ import {Injectable} from '@nestjs/common';
 import {InjectModel} from '@nestjs/mongoose';
 import {Model} from 'mongoose';
 
+import {FindDTO} from './dto/find.dto';
+import {RegisterBookArgs} from './dto/register-book.argstype';
 import {Book} from './schema/book.schema';
-import {RegisterBookArgs} from './argstype/register-book.argstype';
-import {ManyBooksArgs} from './argstype/many-books.argstype';
 
 @Injectable()
 export class BooksService {
@@ -16,8 +16,8 @@ export class BooksService {
     return this.bookModel.findById(id);
   }
 
-  async find({keywords, categories}: ManyBooksArgs) {
-    return this.bookModel.find({}).exec();
+  async find({limit}: FindDTO) {
+    return this.bookModel.find({}).limit(limit).exec();
   }
 
   async createBook({...other}: RegisterBookArgs) {

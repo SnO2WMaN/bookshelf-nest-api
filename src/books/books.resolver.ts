@@ -9,15 +9,16 @@ import {
 } from '@nestjs/graphql';
 import {IsUrl} from 'class-validator';
 import {URLResolver as URL, DateResolver as DateScalar} from 'graphql-scalars';
+import {ValidationPipe, UsePipes} from '@nestjs/common';
 
 import {OpenBDService} from '../openbd/openbd.service';
 import {BookPrice} from '../book-price/schema/book-price.schema';
 import {JanService} from '../jan/jan.service';
 
-import {RegisterBookArgs} from './argstype/register-book.argstype';
+import {RegisterBookArgs} from './dto/register-book.argstype';
 import {BooksService} from './books.service';
 import {Book} from './schema/book.schema';
-import {ManyBooksArgs} from './argstype/many-books.argstype';
+import {ManyBooksArgs} from './dto/many-books.argstype';
 
 @Resolver((of) => Book)
 export class BooksResolver {
@@ -48,16 +49,19 @@ export class BooksResolver {
   }
 
   @Query((type) => Book)
+  @UsePipes(new ValidationPipe())
   async book(@Args('id') id: string) {
     return this.booksService.findById(id);
   }
 
   @Query((type) => [Book])
+  @UsePipes(new ValidationPipe())
   async manyBooks(@Args() args: ManyBooksArgs) {
     return this.booksService.find(args);
   }
 
   @Mutation((type) => Book)
+  @UsePipes(new ValidationPipe())
   async registerBook(@Args() {...other}: RegisterBookArgs) {
     const book = await this.booksService.createBook({...other});
     return book;
