@@ -46,5 +46,8 @@ export class Book extends Document {
   @Field((type) => String, {nullable: true})
   @Prop({required: false})
   jan?: string;
+
+  @Prop({type: String, required: false})
+  publishedAt?: string;
 }
 export const BookSchema = SchemaFactory.createForClass(Book);

@@ -8,7 +8,7 @@ import {
   ArgsType,
 } from '@nestjs/graphql';
 import {IsUrl} from 'class-validator';
-import {URLResolver as URL} from 'graphql-scalars';
+import {URLResolver as URL, DateResolver as DateScalar} from 'graphql-scalars';
 
 import {OpenBDService} from '../openbd/openbd.service';
 import {BookPrice} from '../book-price/schema/book-price.schema';
@@ -29,8 +29,8 @@ export class BooksResolver {
 
   @ResolveField((type) => URL, {nullable: true})
   @IsUrl()
-  async cover(@Parent() {isbn}: Book) {
-    return isbn && this.bookbdService.cover(isbn);
+  async cover(@Parent() {isbn}: Book): Promise<string | null> {
+    return isbn ? this.bookbdService.cover(isbn) : null;
   }
 
   @ResolveField((type) => BookPrice, {nullable: true})
@@ -40,6 +40,11 @@ export class BooksResolver {
       return base && {base, tax: 'JPN'};
     }
     return null;
+  }
+
+  @ResolveField((type) => DateScalar, {nullable: true})
+  async publishedAt(@Parent() {publishedAt}: Book): Promise<Date | null> {
+    return publishedAt ? new Date(publishedAt) : null;
   }
 
   @Query((type) => Book)
