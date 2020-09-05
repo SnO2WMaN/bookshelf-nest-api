@@ -27,9 +27,9 @@ export class BooksService {
     totalDocs: number;
     totalPages: number;
     hasPrevPage: boolean;
-    prevPage?: number;
+    prevPage: number | null;
     hasNextPage: boolean;
-    nextPage?: number;
+    nextPage: number | null;
   }> {
     return (this.bookModel as any).paginate({}, {page, limit});
   }

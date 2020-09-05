@@ -3,9 +3,9 @@ import {IsInt, IsPositive} from 'class-validator';
 export class FindDTO {
   @IsInt()
   @IsPositive()
-  limit: number;
+  readonly limit?: number;
 
   @IsInt()
   @IsPositive()
-  page: number;
+  readonly page?: number;
 }

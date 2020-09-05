@@ -39,11 +39,9 @@ export class Book extends Document {
   pages?: number;
 
   @Field((type) => ISBN, {nullable: true})
-  @IsISBN()
   @Prop({required: false})
   isbn?: string;
 
-  @Field((type) => String, {nullable: true})
   @Prop({required: false})
   jan?: string;
 

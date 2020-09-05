@@ -6,15 +6,15 @@ import {Author} from '../schema/book.schema';
 @ArgsType()
 export class RegisterBookArgs {
   @Field({nullable: false})
-  title!: string;
+  readonly title!: string;
 
   @Field((type) => Int, {nullable: true})
   @IsInt()
-  pages?: number;
+  readonly pages?: number;
 
   @Field((type) => [String], {nullable: true})
-  categories?: string[];
+  readonly categories?: string[];
 
   @Field((type) => [String], {nullable: true})
-  keywords?: string[];
+  readonly keywords?: string[];
 }

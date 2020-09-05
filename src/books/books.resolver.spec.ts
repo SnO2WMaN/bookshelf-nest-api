@@ -29,8 +29,6 @@ describe('BooksResolver', () => {
     expect(resolver).toBeDefined();
   });
 
-  describe('manyBooks', () => {});
-
   describe('isbn()', () => {
     it('正しい値', async () => {
       const book = {isbn: '9784758013178'} as Book;

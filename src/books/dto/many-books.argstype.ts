@@ -7,10 +7,10 @@ export class ManyBooksArgs {
   @IsInt()
   @IsPositive()
   @Max(80)
-  limit: number;
+  readonly limit: number;
 
   @Field((type) => Int, {defaultValue: 1})
   @IsInt()
   @IsPositive()
-  page: number;
+  readonly page: number;
 }
