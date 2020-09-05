@@ -2,19 +2,23 @@ import {UsePipes, ValidationPipe} from '@nestjs/common';
 import {
   Args,
   Mutation,
+  ObjectType,
   Parent,
   Query,
   ResolveField,
   Resolver,
-  ObjectType,
 } from '@nestjs/graphql';
-import {IsUrl} from 'class-validator';
-import {DateResolver as DateScalar, URLResolver as URL} from 'graphql-scalars';
+import {isISBN, IsUrl} from 'class-validator';
+import {
+  DateResolver as DateScalar,
+  ISBNResolver as ISBN,
+  URLResolver as URL,
+} from 'graphql-scalars';
 
 import {BookPrice} from '../book-price/schema/book-price.schema';
-import {JanService} from '../jan/jan.service';
-import {OpenBDService} from '../openbd/openbd.service';
 import {Paginated} from '../common/paginated.schema';
+import {JanService, PublicationJANCode} from '../jan/jan.service';
+import {OpenBDService} from '../openbd/openbd.service';
 
 import {BooksService} from './books.service';
 import {ManyBooksArgs} from './dto/many-books.argstype';
@@ -32,24 +36,40 @@ export class BooksResolver {
     private readonly JANService: JanService,
   ) {}
 
+  @ResolveField((type) => ISBN, {nullable: true})
+  async isbn(@Parent() {isbn}: Book): Promise<string | null> {
+    if (!isbn || !isISBN(isbn)) return null;
+    return isbn;
+  }
+
+  @ResolveField((type) => String, {nullable: true})
+  async jan(@Parent() {jan}: Book): Promise<PublicationJANCode | null> {
+    if (!jan || !this.JANService.check(jan)) return null;
+    return jan;
+  }
+
   @ResolveField((type) => URL, {nullable: true})
   @IsUrl()
-  async cover(@Parent() {isbn}: Book): Promise<string | null> {
-    return isbn ? this.bookbdService.cover(isbn) : null;
+  async cover(@Parent() {isbn, cover}: Book): Promise<string | null> {
+    if (cover) return cover;
+    if (isbn) return this.bookbdService.cover(isbn).catch(() => null);
+    return null;
   }
 
   @ResolveField((type) => BookPrice, {nullable: true})
-  async price(@Parent() {jan}: Book): Promise<BookPrice | null> {
+  async price(@Parent() book: Book): Promise<BookPrice | null> {
+    const jan = await this.jan(book);
     if (jan) {
       const base = this.JANService.price(jan);
-      return base && {base, tax: 'JPN'};
+      if (base) return {base, tax: 'JPN'};
     }
     return null;
   }
 
   @ResolveField((type) => DateScalar, {nullable: true})
   async publishedAt(@Parent() {publishedAt}: Book): Promise<Date | null> {
-    return publishedAt ? new Date(publishedAt) : null;
+    const date = publishedAt ? new Date(publishedAt) : null;
+    return date instanceof Date && !isNaN(date.getTime()) ? date : null;
   }
 
   @Query((type) => Book)
