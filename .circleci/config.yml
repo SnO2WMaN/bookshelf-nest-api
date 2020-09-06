@@ -55,6 +55,16 @@ jobs:
       - store_test_results:
           path: ./junit
 
+  tsc:
+    executor:
+      name: 'node/default'
+      tag: '12.18'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run: $(yarn bin tsc) --noEmit
+
   fossa:
     machine: true
     steps:
@@ -91,11 +101,13 @@ workflows:
     jobs:
       - lint-eslint
       - lint-prettier
+      - tsc
       - test
       - docker/hadolint:
           dockerfiles: Dockerfile
       - build:
           requires:
+            - tsc
             - test
       - build-docker:
           requires:
